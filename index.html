@@ -76,6 +76,18 @@ h2{font-size:14px;margin:0 0 8px;color:var(--dim);font-weight:600}
 .mid{text-align:center;padding:6px;border-top:1px dashed #44564a;border-bottom:1px dashed #44564a;
   margin:10px 0;display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap}
 
+/* 코치 — 폰에서 말풍선을 요소에 붙이면 자리가 안 난다. 화면 아래 고정 띠 + 대상에 테두리 */
+#coach{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--felt2);
+  border-top:2px solid var(--gold);padding:10px 12px;box-shadow:0 -4px 14px #0009}
+#coach .ct{margin-bottom:8px;line-height:1.6}
+#coach .cs{float:right;color:var(--dim);font-size:11px}
+#coach .cb{display:flex;gap:6px}
+#coach .cb button:first-child{background:var(--gold);color:#1b1b1b;border-color:var(--gold);flex:1}
+body.coaching{padding-bottom:150px}
+.point{outline:3px solid var(--gold);outline-offset:2px;border-radius:6px;
+  animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{50%{outline-color:#f0d87a}}
+
 /* 휴대폰 */
 @media (max-width:700px){
   main{padding:8px}
@@ -98,6 +110,7 @@ h2{font-size:14px;margin:0 0 8px;color:var(--dim);font-weight:600}
   <button data-tab="battle">대전</button>
   <span class="sp"></span>
   <span id="coins"></span>
+  <button id="help" title="튜토리얼 다시 보기">?</button>
   <button id="reset" title="컬렉션·덱 전부 삭제">초기화</button>
 </nav>
 
@@ -130,5 +143,6 @@ h2{font-size:14px;margin:0 0 8px;color:var(--dim);font-weight:600}
   <div id="board"></div>
 </section>
 </main>
+<div id="coach" hidden></div>
 <script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <script src="app.js"></script>

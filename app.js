@@ -142,8 +142,13 @@ function key(slot) {
 let G = null, sel = null;
 const expand = (d) => Object.entries(d.cards).flatMap(([k, n]) => Array(n).fill(k));
 function mkSide(d) {
-  const deck = shuffle(expand(d));
-  return { name: d.name, deck, hand: deck.splice(0, 7), prize: deck.splice(0, RULES.prize_count), bench: [], battle: null, discard: [] };
+  // 멀리건 — 기본 인물 없는 손으로는 아무것도 못 한다. 양쪽 모두 여기서 걸린다 (호출처마다 걸면 빠뜨린다)
+  for (let t = 0; ; t++) {
+    const deck = shuffle(expand(d));
+    const hand = deck.splice(0, 7);
+    if (t >= 20 || hand.some((k) => !isE(k) && byId[k] && byId[k].stage === "기본"))
+      return { name: d.name, deck, hand, prize: deck.splice(0, RULES.prize_count), bench: [], battle: null, discard: [] };
+  }
 }
 function start(i, j) {
   AI = null; ME = null;
@@ -220,6 +225,7 @@ function setupHTML() {
     <button id="ai">AI와 대전</button>
     <button id="invite">링크로 초대</button>
     <button id="go" ${save.decks.length < 2 ? "disabled" : ""}>둘이서(한 폰)</button>
+    <button id="practice">연습 대전</button>
     ${save.decks.length < 2 ? `<span class="tag">한 폰으로 둘이 두려면 덱이 2개 필요하다</span>` : ""}
     <div id="invitebox"></div>`;
 }
@@ -228,6 +234,7 @@ function renderBattle() {
   if ($("#go")) $("#go").onclick = () => (AI !== null ? startAI() : start(0, 1));
   if ($("#ai")) $("#ai").onclick = startAI;
   if ($("#invite")) $("#invite").onclick = invite;
+  if ($("#practice")) $("#practice").onclick = startPractice;
   if ($("#quit")) $("#quit").onclick = () => (location.search ? location.assign(location.pathname) : location.reload());
   if (!G) {
     $("#board").innerHTML = `<p class="tag">AI와 두거나, 링크로 친구를 부르거나, 덱 2개로 한 폰에서 둘이 둔다.<br>
@@ -301,10 +308,7 @@ function aiDeck() {
 }
 function startAI() {
   AI = 1; ME = null;
-  const ad = aiDeck();
-  let foe = mkSide(ad), tries = 0;
-  while (!foe.hand.some((k) => !isE(k) && byId[k].stage === "기본") && ++tries < 20) foe = mkSide(ad);  // 멀리건
-  G = { s: [mkSide(deck()), foe], turn: 0, n: 1, stadium: null, coin: "", log: [] };
+  G = { s: [mkSide(deck()), mkSide(aiDeck())], turn: 0, n: 1, stadium: null, coin: "", log: [] };
   sel = null; renderBattle();
 }
 function aiTurn() {
@@ -414,6 +418,78 @@ $("#board").addEventListener("click", (e) => {
   if (c) { sel = { s: +c.dataset.s, z: c.dataset.z, i: +c.dataset.i }; renderBattle(); }
 });
 
+
+/* ───────── 코치 (첫 실행 안내 + 연습 대전) ─────────
+   단계 목록 하나로 둘 다 돌린다. 한 단계는 {tab, at, say, done} — done()이 참이면 저절로 넘어가고,
+   설명만 있는 단계는 [다음]으로 넘긴다.
+   ponytail: 400ms 폴링으로 단계를 본다. 렌더 경로마다 훅을 박는 것보다 짧고, 한 박자 늦어도 티가 안 난다. */
+const COACHED = KEY + ":coached";
+let coach = null;
+
+const me = () => G && G.s[0];
+const COACH_START = () => [
+  { tab: "pack", at: "#buy", say: "<b>팩부터 연다.</b> 카드는 팩에서만 나온다 — 100코인에 10장. [팩 열기]를 눌러보자.",
+    done: () => Object.keys(save.owned).length > 0 },
+  { tab: "coll", say: "모은 카드는 <b>컬렉션</b>에 쌓인다. 위의 진영·타입·희귀도 버튼으로 걸러 본다. 어둡게 보이는 건 아직 없는 카드다." },
+  { tab: "deck", at: "#fill", say: "<b>덱은 정확히 60장.</b> 같은 이름은 4장까지, 에너지는 무제한. [자동 채우기]가 한 번에 짜준다.",
+    done: () => deckErrors(deck()).length === 0 },
+  { tab: "deck", at: "#decklist", say: "<b>✔ 60장 완성.</b> 아래 카드를 누르면 1장 추가, 목록의 <b>−/+</b>로 빼고 더한다. [새 덱]으로 여러 벌을 둘 수 있다." },
+  { tab: "battle", at: "#ai", say: "<b>대전은 셋 중 하나.</b><br>· [AI와 대전] — 혼자<br>· [링크로 초대] — 링크를 보내 친구와<br>· [둘이서(한 폰)] — 한 폰을 넘겨가며 (덱 2개 필요)" },
+  { tab: "battle", at: "#practice", say: "조작은 다 같다 — <b>카드를 누르면 선택</b>되고, 옮길 자리의 <b>[여기로]</b>를 누르면 간다.<br>[연습 대전]을 누르면 한 판을 손잡고 같이 둔다." },
+];
+
+const COACH_BATTLE = () => [
+  { say: "<b>시작했다.</b> 손 7장, 영혼 카드 6장. 아래가 나, 위가 AI다. <b>영혼 카드 6장을 먼저 다 가져오면 이긴다.</b>" },
+  { say: "먼저 <b>기본 인물</b>을 세운다. 손에서 인물 카드를 누르고, '배틀' 칸의 <b>[여기로]</b>를 누른다.",
+    done: () => me().battle },
+  { say: "<b>벤치</b>에도 기본 인물을 놓는다 (최대 5장). 배틀 인물이 기절하면 벤치에서 올라온다 — 비워두면 그대로 진다.",
+    done: () => me().bench.length > 0 },
+  { say: "<b>에너지</b>를 붙인다. 손의 에너지 카드를 누르고 '배틀' 칸의 [여기로]. <b>턴당 1장만</b> 붙는다.",
+    done: () => me().battle && energyOn(me().battle).length > 0 },
+  { at: "#turn", say: "<b>[턴 넘기기]</b>를 누르면 AI가 둔다. AI가 뭘 했는지는 가운데 줄에 적힌다.",
+    done: () => G.n > 1 && G.turn === 0 },
+  { say: "<b>약점 x2 / 저항 −30</b>은 카드에 안 적혀 있다. 상성 링으로 정해진다 —<br><b>바람 → 불 → 땅 → 물 → 빛 → 바람</b>. 화살표 쪽에 강하다." },
+  { say: "<b>공격.</b> 이 화면은 룰을 강제하지 않으니 데미지는 직접 올린다 — 상대 배틀 카드 아래 <b>[+]</b>를 데미지만큼 누른다 (한 번에 10).",
+    done: () => G.s[1].battle && G.s[1].battle.dmg > 0 },
+  { say: "데미지가 <b>HP 이상</b>이면 기절. 기절한 카드를 눌러 '버림'으로 보내고, 내 영혼 카드 1장을 눌러 손으로 가져온다." },
+  { say: "끝. 후퇴·특수상태·트레이너는 두면서 익히면 된다. 막히면 위의 <b>?</b> 를 누르면 다시 나온다." },
+];
+
+function startCoach(steps) { coach = { steps, i: 0 }; coachShow(); }
+function startPractice() {
+  if (deckErrors(deck()).length) return alert("먼저 덱을 60장으로 채운다 (덱 탭 → 자동 채우기)");
+  startAI(); startCoach(COACH_BATTLE());
+}
+function coachShow() {
+  const box = $("#coach");
+  document.body.classList.toggle("coaching", !!coach);
+  if (!coach) {
+    box.hidden = true;
+    document.querySelectorAll(".point").forEach((e) => e.classList.remove("point"));
+    return;
+  }
+  const st = coach.steps[coach.i];
+  if (st.tab && !$("#" + st.tab + ":not([hidden])")) showTab(st.tab);
+  box.hidden = false;
+  box.innerHTML = `<div class="cs">${coach.i + 1}/${coach.steps.length}</div><div class="ct">${st.say}</div>
+    <div class="cb"><button id="cnext">${coach.i === coach.steps.length - 1 ? "끝내기" : "다음"}</button>
+    <button id="cstop">그만</button></div>`;
+  $("#cnext").onclick = coachNext;
+  $("#cstop").onclick = coachEnd;
+}
+function coachNext() { if (coach && ++coach.i >= coach.steps.length) return coachEnd(); coachShow(); }
+function coachEnd() { coach = null; localStorage.setItem(COACHED, "1"); coachShow(); }
+setInterval(() => {
+  if (!coach) return;
+  const st = coach.steps[coach.i];
+  const e = st.at && $(st.at);                   // 대상이 매 렌더마다 새로 그려지므로 테두리를 다시 붙인다
+  if (!e || !e.classList.contains("point")) {
+    document.querySelectorAll(".point").forEach((x) => x.classList.remove("point"));
+    if (e) e.classList.add("point");
+  }
+  try { if (st.done && st.done()) coachNext(); } catch { /* 판이 아직 없는 단계는 그냥 기다린다 */ }
+}, 400);
+
 /* ───────── 탭 ───────── */
 const TABS = { pack: () => renderPack(null), coll: renderColl, deck: renderDeck, battle: renderBattle };
 function showTab(name) {
@@ -423,6 +499,7 @@ function showTab(name) {
 }
 document.querySelectorAll("nav [data-tab]").forEach((b) => b.onclick = () => showTab(b.dataset.tab));
 $("#buy").onclick = openPack;
+$("#help").onclick = () => startCoach(COACH_START());
 $("#reset").onclick = () => { if (confirm("컬렉션·덱을 전부 지운다. 계속?")) { localStorage.removeItem(KEY); location.reload(); } };
 
 fetch("cards.json").then((r) => r.json()).then((d) => {
@@ -433,6 +510,7 @@ fetch("cards.json").then((r) => r.json()).then((d) => {
   const j = new URLSearchParams(location.search).get("join");
   if (j) { showTab("battle"); join(j); return; }
   renderPack(null);
+  if (!localStorage.getItem(COACHED)) startCoach(COACH_START());
 }).catch(() => { document.body.innerHTML = `<p style="padding:20px">cards.json을 못 읽었다. 파일을 직접 열면(file://) 막힌다 — 프로젝트 폴더에서 <code>python3 -m http.server 8000</code> 을 띄우고 <code>localhost:8000</code> 으로 열 것.</p>`; });
 
 /* localhost:8000/?selftest — 팩·코인·덱 상한만 확인한다. 프레임워크 없음. */
