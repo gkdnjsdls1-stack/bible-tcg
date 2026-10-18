@@ -1,0 +1,4 @@
+# 원본 그림 258MB — 보관용 마스터라 올리지 않는다. 배포본은 webart.py가 만드는 art-web/
+art/
+__pycache__/
+.DS_Store

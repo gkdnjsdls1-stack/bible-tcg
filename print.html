@@ -1,0 +1,34 @@
+<meta charset="utf-8">
+<title>성경 TCG — 인쇄 시트</title>
+<!-- 실물 인쇄용. PDF 라이브러리를 쓰지 않는다 — 브라우저의 "PDF로 저장"이 이미 한다.
+     A4 한 장에 63x88mm 카드 9장(3x3). 인쇄 설정에서 "배율 100%"와 "배경 그래픽"을 켤 것. -->
+<style>
+  @page { size: A4; margin: 10.5mm 10.5mm 10.5mm 10.5mm; }
+  * { box-sizing: border-box; margin: 0 }
+  body { font: 12px/1.4 -apple-system, "Apple SD Gothic Neo", sans-serif; background: #555; }
+  .page { width: 189mm; height: 264mm; display: grid; grid-template-columns: repeat(3, 63mm);
+          grid-template-rows: repeat(3, 88mm); background: #fff; margin: 0 auto 8mm;
+          break-after: page; page-break-after: always; }
+  .page img { width: 63mm; height: 88mm; display: block; outline: .2mm dashed #bbb; outline-offset: -.1mm; }
+  #bar { position: sticky; top: 0; background: #222; color: #eee; padding: 8px 12px; display: flex; gap: 10px; align-items: center }
+  #bar button { font: inherit; padding: 4px 12px }
+  @media print { #bar { display: none } body { background: #fff } .page { margin: 0 } }
+</style>
+<div id="bar">
+  <b>인쇄 시트</b><span id="info"></span>
+  <label><input type="checkbox" id="cut" checked> 재단선</label>
+  <button onclick="print()">인쇄 / PDF로 저장</button>
+  <span>배율 100% · 여백 없음 · 배경 그래픽 켜기</span>
+</div>
+<div id="sheets"></div>
+<script>
+fetch("cards.json").then(r => r.json()).then(d => {
+  const keys = [...d.cards.map(c => `art-web/${c.id}.jpg`), ...d.ring.map(t => `art-web/energy-${t}.jpg`)];
+  let html = "";
+  for (let i = 0; i < keys.length; i += 9)
+    html += `<div class="page">` + keys.slice(i, i + 9).map(k => `<img src="${k}">`).join("") + `</div>`;
+  sheets.innerHTML = html;
+  info.textContent = `${keys.length}장 · A4 ${Math.ceil(keys.length / 9)}쪽 · 63x88mm`;
+  cut.onchange = () => document.querySelectorAll(".page img").forEach(i => i.style.outline = cut.checked ? "" : "none");
+}).catch(() => sheets.innerHTML = `<p style="background:#fff;padding:20px">cards.json을 못 읽었다 — <code>python3 -m http.server 8000</code> 으로 열 것.</p>`);
+</script>

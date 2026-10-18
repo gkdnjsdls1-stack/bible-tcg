@@ -1,0 +1,2217 @@
+{
+ "_comment": "ring 순서대로 앞 타입이 뒤 타입에 강함(마지막 빛 → 첫 바람으로 순환). 약점/저항은 저장하지 않고 ring에서 계산한다.",
+ "ring": [
+  "바람",
+  "불",
+  "땅",
+  "물",
+  "빛"
+ ],
+ "rules": {
+  "deck_size": 60,
+  "max_copies_per_name": 4,
+  "prize_count": 6,
+  "weakness_multiplier": 2,
+  "resistance": -30,
+  "hp_range": {
+   "기본": [
+    60,
+    90
+   ],
+   "1진화": [
+    100,
+    140
+   ],
+   "2진화": [
+    150,
+    200
+   ]
+  },
+  "prize_label": {
+   "천국": "구원한 영혼",
+   "지옥": "빼앗은 영혼"
+  },
+  "one_faction_per_deck": false,
+  "min_basic_in_deck": 1,
+  "bench_size": 5,
+  "pack": {
+   "size": 10,
+   "price": 100,
+   "dupe_refund": 10,
+   "slots": {
+    "흔함": 4,
+    "드묾": 3,
+    "리버스": 2,
+    "레어": 1
+   },
+   "note": "리버스 슬롯은 흔함/드묾 중에서 뽑는다. 기본 에너지 1장은 덤으로 들어간다."
+  },
+  "start_coins": 1000
+ },
+ "art_style": "귀여운 2등신 치비 캐릭터, 큰 머리와 동그란 눈, 부드러운 파스텔 수채, 굵고 둥근 윤곽선, 단순한 배경",
+ "cards": [
+  {
+   "id": "hv-light-david-1",
+   "name": "소년 다윗",
+   "faction": "천국",
+   "type": "빛",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 70,
+   "attacks": [
+    {
+     "name": "물매",
+     "cost": {
+      "빛": 1
+     },
+     "damage": 20,
+     "text": ""
+    }
+   ],
+   "retreat": 1,
+   "verse": "삼상 17:45",
+   "art_prompt": "물매를 든 양치기 소년, 들판",
+   "species": "양치기 소년",
+   "era": "주전 1000년경",
+   "rarity": "●",
+   "flavor": "형들의 심부름을 하던 막내. 사자와 곰을 맨손으로 상대한 적이 있다.",
+   "illustrator": "AI",
+   "kind": "인물",
+   "appearance": "열두 살쯤 소년, 적갈색 곱슬머리, 햇볕에 그을린 피부, 코에 주근깨, 흰 튜닉에 붉은 허리띠, 맨발, 가죽 물매를 쥠"
+  },
+  {
+   "id": "hv-light-david-2",
+   "name": "용사 다윗",
+   "faction": "천국",
+   "type": "빛",
+   "stage": "1진화",
+   "evolves_from": "소년 다윗",
+   "hp": 110,
+   "attacks": [
+    {
+     "name": "거인의 칼",
+     "cost": {
+      "빛": 1,
+      "무색": 1
+     },
+     "damage": 50,
+     "text": ""
+    },
+    {
+     "name": "기름부음",
+     "cost": {
+      "빛": 2,
+      "무색": 1
+     },
+     "damage": 80,
+     "text": "이 인물에 붙은 에너지 1개를 버린다."
+    }
+   ],
+   "retreat": 2,
+   "verse": "삼상 18:7",
+   "art_prompt": "칼을 든 젊은 전사, 승리 후 성문 앞",
+   "species": "빛의 용사",
+   "era": "주전 1000년경",
+   "rarity": "◆",
+   "flavor": "돌 하나로 거인을 꺾은 뒤, 노래가 그를 따라다녔다.",
+   "illustrator": "AI",
+   "kind": "인물",
+   "appearance": "같은 적갈색 곱슬머리 소년이 열일곱쯤으로 자람, 같은 주근깨, 가죽 흉갑과 붉은 망토, 자기 키만 한 칼"
+  },
+  {
+   "id": "hv-fire-elijah",
+   "name": "선지자 엘리야",
+   "faction": "천국",
+   "type": "불",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 80,
+   "attacks": [
+    {
+     "name": "갈멜산의 불",
+     "cost": {
+      "불": 2
+     },
+     "damage": 40,
+     "text": ""
+    }
+   ],
+   "ability": {
+    "name": "불수레",
+    "text": "[천국 시그니처] 내 턴에 1번, 기절한 내 천국 인물 1장을 손으로 가져온다."
+   },
+   "retreat": 1,
+   "verse": "왕상 18:38",
+   "art_prompt": "제단 위로 불이 내리는 장면을 바라보는 노년 선지자",
+   "species": "불의 선지자",
+   "era": "주전 9세기",
+   "rarity": "★",
+   "flavor": "삼 년 동안 비를 막았고, 수레를 타고 올라갔다.",
+   "illustrator": "AI",
+   "kind": "인물",
+   "appearance": "쉰 넘은 노인, 헝클어진 은회색 장발과 무릎까지 오는 긴 수염, 낙타털 거친 겉옷에 넓은 가죽 띠, 맨발"
+  },
+  {
+   "id": "hl-fire-baal-priest",
+   "name": "바알의 사제",
+   "faction": "지옥",
+   "type": "불",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 60,
+   "attacks": [
+    {
+     "name": "헛된 제사",
+     "cost": {
+      "불": 1
+     },
+     "damage": 30,
+     "text": "[지옥 시그니처] 내 벤치 인물 1장을 버려도 된다. 버렸으면 데미지 +40."
+    }
+   ],
+   "retreat": 1,
+   "verse": "왕상 18:26",
+   "art_prompt": "꺼진 제단 앞에서 절규하는 이교 사제, 붉은 연무",
+   "species": "우상의 사제",
+   "era": "주전 9세기",
+   "rarity": "◆",
+   "flavor": "하루 종일 외쳤으나 아무 응답도, 아무 불도 없었다.",
+   "illustrator": "AI",
+   "kind": "인물",
+   "appearance": "마른 체격의 사제, 반들한 민머리에 붉은 소용돌이 문신, 주황색 제의, 한쪽 눈썹을 올린 능글맞은 웃음"
+  },
+  {
+   "id": "tr-item-oil",
+   "name": "거룩한 기름",
+   "kind": "아이템",
+   "faction": "천국",
+   "rarity": "●",
+   "text": "내 인물 1장에서 데미지 카운터 3개(30)를 덜어낸다.",
+   "verse": "약 5:14",
+   "art_prompt": "뿔나팔에 담긴 기름을 머리에 붓는 손",
+   "illustrator": "AI"
+  },
+  {
+   "id": "tr-item-rod",
+   "name": "모세의 지팡이",
+   "kind": "아이템",
+   "faction": "천국",
+   "rarity": "◆",
+   "text": "내 덱에서 기본 에너지 2장을 골라 손으로 가져온 뒤 덱을 섞는다.",
+   "verse": "출 14:16",
+   "art_prompt": "갈라진 바다 앞으로 뻗은 마른 나무 지팡이",
+   "illustrator": "AI"
+  },
+  {
+   "id": "tr-sup-samuel",
+   "name": "선지자 사무엘",
+   "kind": "서포터",
+   "faction": "천국",
+   "rarity": "◆",
+   "text": "손을 전부 덱에 넣고 섞은 뒤 5장을 뽑는다.",
+   "verse": "삼상 3:10",
+   "art_prompt": "밤중 등불 아래 일어나 앉은 소년 선지자",
+   "illustrator": "AI",
+   "appearance": "백발과 흰 수염의 노인 선지자, 남색 겉옷, 기름이 담긴 뿔을 두 손으로 받쳐 듦"
+  },
+  {
+   "id": "tr-sup-tempter",
+   "name": "유혹하는 자",
+   "kind": "서포터",
+   "faction": "지옥",
+   "rarity": "◆",
+   "text": "상대의 손을 본다. 그중 서포터 1장을 골라 버리게 한다.",
+   "verse": "마 4:3",
+   "art_prompt": "광야에서 돌을 내미는 그림자 형상",
+   "illustrator": "AI",
+   "appearance": "망토를 뒤집어쓴 작은 악마, 이마에 앙증맞은 뿔 두 개, 빨간 사과를 내밂"
+  },
+  {
+   "id": "tr-stad-carmel",
+   "name": "갈멜산",
+   "kind": "스타디움",
+   "faction": "천국",
+   "rarity": "★",
+   "text": "양쪽 모두의 불 인물이 주는 기술 데미지 +10.",
+   "verse": "왕상 18:19",
+   "art_prompt": "두 제단이 마주 선 산 정상, 먹구름",
+   "illustrator": "AI"
+  },
+  {
+   "id": "tr-stad-wilderness",
+   "name": "광야",
+   "kind": "스타디움",
+   "faction": "지옥",
+   "rarity": "★",
+   "text": "양쪽 모두의 후퇴 비용이 무색 1개만큼 늘어난다.",
+   "verse": "신 8:15",
+   "art_prompt": "끝없이 메마른 바위 사막, 흐린 하늘",
+   "illustrator": "AI"
+  },
+  {
+   "id": "hv-light-david-3",
+   "name": "왕 다윗",
+   "kind": "인물",
+   "faction": "천국",
+   "type": "빛",
+   "stage": "2진화",
+   "evolves_from": "용사 다윗",
+   "hp": 160,
+   "attacks": [
+    {
+     "name": "수금의 찬양",
+     "cost": {
+      "빛": 1,
+      "무색": 1
+     },
+     "damage": 60,
+     "text": "내 인물 전체에서 데미지 카운터 2개(20)씩 덜어낸다."
+    },
+    {
+     "name": "왕의 선포",
+     "cost": {
+      "빛": 2,
+      "무색": 1
+     },
+     "damage": 110,
+     "text": ""
+    }
+   ],
+   "retreat": 2,
+   "verse": "삼하 7:16",
+   "species": "기름부음 받은 왕",
+   "era": "주전 1000년경",
+   "flavor": "그의 왕좌는 영원히 견고하리라는 약속을 받았다.",
+   "rarity": "★",
+   "illustrator": "AI",
+   "art_prompt": "왕관을 쓰고 수금을 든 왕, 황금빛 궁정",
+   "ability": {
+    "name": "영원한 언약",
+    "text": "[천국 시그니처] 내 턴에 1번, 내 트래시에서 천국 인물 1장을 손으로 가져온다."
+   },
+   "appearance": "같은 적갈색 곱슬머리에 짧은 수염이 난 서른쯤, 주근깨 그대로, 가는 금관과 보랏빛 왕복, 작은 수금"
+  },
+  {
+   "id": "hv-fire-elijah-2",
+   "name": "승천하는 엘리야",
+   "kind": "인물",
+   "faction": "천국",
+   "type": "불",
+   "stage": "1진화",
+   "evolves_from": "선지자 엘리야",
+   "hp": 120,
+   "attacks": [
+    {
+     "name": "불말과 불수레",
+     "cost": {
+      "불": 2
+     },
+     "damage": 70,
+     "text": "이 인물에 붙은 에너지 1개를 버린다."
+    },
+    {
+     "name": "회오리",
+     "cost": {
+      "불": 1,
+      "무색": 1
+     },
+     "damage": 50,
+     "text": "상대 배틀 인물을 벤치와 바꾸게 한다. 상대가 고른다."
+    }
+   ],
+   "retreat": 1,
+   "verse": "왕하 2:11",
+   "species": "하늘로 오른 선지자",
+   "era": "주전 9세기",
+   "flavor": "죽음을 보지 않고 올라간 두 사람 중 하나.",
+   "rarity": "★",
+   "illustrator": "AI",
+   "art_prompt": "불타는 수레와 말이 회오리 속으로 오르는 장면",
+   "appearance": "같은 은회색 장발 노인, 겉옷과 수염이 위로 휘날리고, 벗은 겉옷 한 자락을 아래로 떨어뜨림"
+  },
+  {
+   "id": "hv-water-noah",
+   "name": "의인 노아",
+   "kind": "인물",
+   "faction": "천국",
+   "type": "물",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 70,
+   "attacks": [
+    {
+     "name": "방주를 짓다",
+     "cost": {
+      "물": 1
+     },
+     "damage": 20,
+     "text": "내 덱에서 아이템 1장을 골라 손으로 가져온 뒤 덱을 섞는다."
+    }
+   ],
+   "retreat": 1,
+   "verse": "창 6:9",
+   "species": "당대의 의인",
+   "era": "태초",
+   "flavor": "백 년 동안 비 한 방울 없는 하늘 아래서 배를 지었다.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "마른 땅 위에서 거대한 목선을 짓는 노인",
+   "appearance": "예순쯤, 풍성한 흰 곱슬 수염과 둥근 주먹코, 갈색 작업 앞치마에 톱밥, 손에 나무망치"
+  },
+  {
+   "id": "hv-water-noah-2",
+   "name": "방주의 노아",
+   "kind": "인물",
+   "faction": "천국",
+   "type": "물",
+   "stage": "1진화",
+   "evolves_from": "의인 노아",
+   "hp": 120,
+   "attacks": [
+    {
+     "name": "큰 물",
+     "cost": {
+      "물": 2
+     },
+     "damage": 60,
+     "text": ""
+    },
+    {
+     "name": "무지개 언약",
+     "cost": {
+      "물": 2,
+      "무색": 1
+     },
+     "damage": 80,
+     "text": "다음 상대 턴에 이 인물이 받는 데미지 -30."
+    }
+   ],
+   "retreat": 2,
+   "verse": "창 9:13",
+   "species": "언약을 받은 자",
+   "era": "태초",
+   "flavor": "물이 그친 뒤 하늘에 활이 걸렸다.",
+   "rarity": "◆",
+   "illustrator": "AI",
+   "art_prompt": "물 위에 뜬 방주와 구름을 가르는 무지개",
+   "appearance": "같은 흰 곱슬 수염 노인, 흰 두건을 쓰고 방주 난간에 기대 손차양"
+  },
+  {
+   "id": "hv-earth-samson",
+   "name": "나실인 삼손",
+   "kind": "인물",
+   "faction": "천국",
+   "type": "땅",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 80,
+   "attacks": [
+    {
+     "name": "맨손",
+     "cost": {
+      "땅": 1
+     },
+     "damage": 30,
+     "text": ""
+    }
+   ],
+   "retreat": 1,
+   "verse": "삿 13:5",
+   "species": "서원한 용사",
+   "era": "주전 11세기",
+   "flavor": "태어나기 전부터 머리에 삭도를 대지 않기로 구별되었다.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "긴 머리를 땋은 젊은 장사, 사자 가죽",
+   "appearance": "스물 남짓, 일곱 갈래로 길게 땋은 검은 머리, 구릿빛 피부에 떡 벌어진 어깨, 황토색 민소매 짧은 옷"
+  },
+  {
+   "id": "hv-earth-samson-2",
+   "name": "눈먼 삼손",
+   "kind": "인물",
+   "faction": "천국",
+   "type": "땅",
+   "stage": "1진화",
+   "evolves_from": "나실인 삼손",
+   "hp": 130,
+   "attacks": [
+    {
+     "name": "기둥을 잡다",
+     "cost": {
+      "땅": 2
+     },
+     "damage": 60,
+     "text": ""
+    },
+    {
+     "name": "마지막 힘",
+     "cost": {
+      "땅": 2,
+      "무색": 1
+     },
+     "damage": 130,
+     "text": "이 인물도 데미지 카운터 6개(60)를 받는다."
+    }
+   ],
+   "retreat": 3,
+   "verse": "삿 16:30",
+   "species": "무너뜨린 자",
+   "era": "주전 11세기",
+   "flavor": "죽을 때 죽인 자가 살았을 때보다 많았다.",
+   "rarity": "★",
+   "illustrator": "AI",
+   "art_prompt": "두 기둥을 양팔로 밀어내는 힘센 장사, 눈을 꼭 감고 있다",
+   "appearance": "같은 구릿빛 장사인데 땋은 머리가 잘려 짧고 삐죽함, 눈에 흰 천을 둘러 가림, 손목에 끊어진 쇠사슬"
+  },
+  {
+   "id": "hv-wind-ezekiel",
+   "name": "선지자 에스겔",
+   "kind": "인물",
+   "faction": "천국",
+   "type": "바람",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 70,
+   "attacks": [
+    {
+     "name": "생기야 오라",
+     "cost": {
+      "바람": 1
+     },
+     "damage": 20,
+     "text": "내 덱에서 기본 에너지 1장을 골라 손으로 가져온다."
+    }
+   ],
+   "retreat": 1,
+   "verse": "겔 37:9",
+   "species": "환상을 본 자",
+   "era": "주전 6세기",
+   "flavor": "사로잡힌 땅에서 하늘이 열리는 것을 보았다.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "강가에 서서 열린 하늘을 올려다보는 선지자",
+   "appearance": "서른쯤, 검은 직모 단발과 짧고 네모난 턱수염, 쪽빛 겉옷, 펼친 두루마리"
+  },
+  {
+   "id": "hv-wind-ezekiel-2",
+   "name": "마른 뼈의 에스겔",
+   "kind": "인물",
+   "faction": "천국",
+   "type": "바람",
+   "stage": "1진화",
+   "evolves_from": "선지자 에스겔",
+   "hp": 110,
+   "attacks": [
+    {
+     "name": "네 바람",
+     "cost": {
+      "바람": 2
+     },
+     "damage": 60,
+     "text": "상대 벤치 인물 1장에게도 데미지 20."
+    }
+   ],
+   "retreat": 1,
+   "verse": "겔 37:10",
+   "species": "일으키는 자",
+   "era": "주전 6세기",
+   "flavor": "뼈들이 서로 연결되고 군대가 되어 일어섰다.",
+   "rarity": "◆",
+   "illustrator": "AI",
+   "art_prompt": "마른 뼈들이 일어서는 골짜기, 휘몰아치는 바람",
+   "ability": {
+    "name": "다시 살아나리라",
+    "text": "[천국 시그니처] 내 턴에 1번, 트래시에서 기본 인물 1장을 벤치에 놓는다."
+   },
+   "appearance": "같은 검은 단발 사내, 두 팔을 활짝 펼치고 옷자락이 바람에 뒤로 날림"
+  },
+  {
+   "id": "hl-light-angel-1",
+   "name": "미혹하는 영",
+   "kind": "인물",
+   "faction": "지옥",
+   "type": "빛",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 60,
+   "attacks": [
+    {
+     "name": "속삭임",
+     "cost": {
+      "빛": 1
+     },
+     "damage": 20,
+     "text": "상대의 손을 본다."
+    }
+   ],
+   "retreat": 1,
+   "verse": "왕상 22:22",
+   "species": "거짓의 영",
+   "era": "시대를 가리지 않음",
+   "flavor": "입에 들어가 거짓을 말하게 하는 영.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "사람의 귀에 입을 대고 속삭이는 희미한 형상",
+   "appearance": "반투명한 연보라 유령, 몸이 아래로 갈수록 흐려짐, 반달로 휜 눈, 손에 든 작은 가면"
+  },
+  {
+   "id": "hl-light-angel-2",
+   "name": "광명의 천사",
+   "kind": "인물",
+   "faction": "지옥",
+   "type": "빛",
+   "stage": "1진화",
+   "evolves_from": "미혹하는 영",
+   "hp": 110,
+   "attacks": [
+    {
+     "name": "가장한 빛",
+     "cost": {
+      "빛": 2
+     },
+     "damage": 60,
+     "text": "상대가 다음 턴에 서포터를 쓸 수 없다."
+    }
+   ],
+   "retreat": 1,
+   "verse": "고후 11:14",
+   "species": "가장한 자",
+   "era": "시대를 가리지 않음",
+   "flavor": "사탄도 자기를 광명의 천사로 가장한다.",
+   "rarity": "◆",
+   "illustrator": "AI",
+   "art_prompt": "반짝이는 날개를 자랑하는 천사, 그림자만 뾰족하게 뒤틀려 있다",
+   "appearance": "같은 연보라 유령이 새하얀 깃털 날개와 접시 같은 가짜 후광을 걸침, 날개 끝만 검게 그을림"
+  },
+  {
+   "id": "hl-light-dragon",
+   "name": "큰 용",
+   "kind": "인물",
+   "faction": "지옥",
+   "type": "빛",
+   "stage": "2진화",
+   "evolves_from": "광명의 천사",
+   "hp": 170,
+   "attacks": [
+    {
+     "name": "꼬리로 쓸다",
+     "cost": {
+      "빛": 2
+     },
+     "damage": 80,
+     "text": "상대 벤치 인물 1장에게 데미지 30."
+    },
+    {
+     "name": "삼키는 불",
+     "cost": {
+      "빛": 2,
+      "무색": 2
+     },
+     "damage": 130,
+     "text": ""
+    }
+   ],
+   "retreat": 3,
+   "verse": "계 12:9",
+   "species": "옛 뱀이라 불리는 자",
+   "era": "마지막 때",
+   "flavor": "하늘에서 땅으로 내쫓긴 큰 용.",
+   "rarity": "★",
+   "illustrator": "AI",
+   "art_prompt": "꼬리로 별들을 쓸어내리는 통통한 붉은 용",
+   "ability": {
+    "name": "참소하는 자",
+    "text": "[지옥 시그니처] 내 벤치 인물 1장을 버려도 된다. 버렸으면 상대 배틀 인물에게 데미지 40."
+   },
+   "appearance": "통통한 붉은 용, 어깨에 작은 머리 일곱이 옹기종기, 짧은 팔, 삐져나온 익살스러운 송곳니"
+  },
+  {
+   "id": "hl-fire-baal-2",
+   "name": "바알의 대제사장",
+   "kind": "인물",
+   "faction": "지옥",
+   "type": "불",
+   "stage": "1진화",
+   "evolves_from": "바알의 사제",
+   "hp": 110,
+   "attacks": [
+    {
+     "name": "거짓 불",
+     "cost": {
+      "불": 2
+     },
+     "damage": 70,
+     "text": "이 인물도 데미지 카운터 2개(20)를 받는다."
+    }
+   ],
+   "retreat": 1,
+   "verse": "왕상 18:28",
+   "species": "우상의 수장",
+   "era": "주전 9세기",
+   "flavor": "피가 흐르도록 자기 몸을 상하게 했다.",
+   "rarity": "◆",
+   "illustrator": "AI",
+   "art_prompt": "시끄럽게 춤추며 소리 지르는 우상 제사장, 아무 일도 안 일어난다",
+   "appearance": "같은 민머리 문신 사제, 소뿔 모양 높은 관과 금술 달린 화려한 제의"
+  },
+  {
+   "id": "hl-water-leviathan",
+   "name": "리워야단",
+   "kind": "인물",
+   "faction": "지옥",
+   "type": "물",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 80,
+   "attacks": [
+    {
+     "name": "깊음에서",
+     "cost": {
+      "물": 1
+     },
+     "damage": 30,
+     "text": ""
+    }
+   ],
+   "retreat": 2,
+   "verse": "욥 41:1",
+   "species": "바다의 괴물",
+   "era": "태초",
+   "flavor": "낚시로 끌어낼 수 없고 갈고리로 잡을 수 없다.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "검은 물결 아래 비치는 거대한 비늘의 형체",
+   "appearance": "동글동글한 파란 바다뱀, 커다란 동그란 눈, 등에 부채꼴 지느러미"
+  },
+  {
+   "id": "hl-water-leviathan-2",
+   "name": "깊음의 리워야단",
+   "kind": "인물",
+   "faction": "지옥",
+   "type": "물",
+   "stage": "1진화",
+   "evolves_from": "리워야단",
+   "hp": 130,
+   "attacks": [
+    {
+     "name": "소용돌이",
+     "cost": {
+      "물": 2
+     },
+     "damage": 60,
+     "text": "상대가 붙인 에너지 1개를 버리게 한다."
+    },
+    {
+     "name": "휘감다",
+     "cost": {
+      "물": 2,
+      "무색": 1
+     },
+     "damage": 90,
+     "text": "상대 배틀 인물은 다음 턴에 후퇴할 수 없다."
+    }
+   ],
+   "retreat": 3,
+   "verse": "욥 41:31",
+   "species": "깊음의 주인",
+   "era": "태초",
+   "flavor": "그가 지나가면 깊은 바다가 끓는 솥 같다.",
+   "rarity": "★",
+   "illustrator": "AI",
+   "art_prompt": "바다를 통째로 휘감아 솟구치는 거대한 뱀",
+   "appearance": "같은 파란 바다뱀이 훨씬 커지고 짙은 남색이 됨, 등지느러미가 가시처럼 돋음"
+  },
+  {
+   "id": "hl-earth-goliath",
+   "name": "블레셋 거인 골리앗",
+   "kind": "인물",
+   "faction": "지옥",
+   "type": "땅",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 90,
+   "attacks": [
+    {
+     "name": "위협",
+     "cost": {
+      "땅": 1
+     },
+     "damage": 20,
+     "text": "상대 배틀 인물은 다음 턴에 후퇴할 수 없다."
+    }
+   ],
+   "retreat": 2,
+   "verse": "삼상 17:4",
+   "species": "가드의 거인",
+   "era": "주전 1000년경",
+   "flavor": "키가 여섯 규빗 한 뼘이었다.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "들판 가운데 홀로 선 거인, 긴 창",
+   "appearance": "또래의 세 배만 한 거인, 땋아 내린 검은 수염, 청동 투구, 근거 없이 뿌듯한 표정"
+  },
+  {
+   "id": "hl-earth-goliath-2",
+   "name": "완전무장 골리앗",
+   "kind": "인물",
+   "faction": "지옥",
+   "type": "땅",
+   "stage": "1진화",
+   "evolves_from": "블레셋 거인 골리앗",
+   "hp": 140,
+   "attacks": [
+    {
+     "name": "놋 투구",
+     "cost": {
+      "땅": 2
+     },
+     "damage": 60,
+     "text": "다음 상대 턴에 이 인물이 받는 데미지 -20."
+    },
+    {
+     "name": "베틀채 같은 창",
+     "cost": {
+      "땅": 2,
+      "무색": 1
+     },
+     "damage": 100,
+     "text": ""
+    }
+   ],
+   "retreat": 3,
+   "verse": "삼상 17:7",
+   "species": "철갑의 거인",
+   "era": "주전 1000년경",
+   "flavor": "창 자루는 베틀채 같고 창날은 육백 세겔이었다.",
+   "rarity": "◆",
+   "illustrator": "AI",
+   "art_prompt": "비늘 갑옷과 놋 투구로 덮인 거인의 전신",
+   "appearance": "같은 땋은 수염 거인이 머리끝부터 발끝까지 철갑을 두름, 자기 키만 한 창"
+  },
+  {
+   "id": "hl-wind-prince",
+   "name": "공중 권세 잡은 자",
+   "kind": "인물",
+   "faction": "지옥",
+   "type": "바람",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 70,
+   "attacks": [
+    {
+     "name": "거스르는 바람",
+     "cost": {
+      "바람": 1
+     },
+     "damage": 20,
+     "text": "상대의 다음 후퇴 비용이 무색 1개 늘어난다."
+    }
+   ],
+   "retreat": 1,
+   "verse": "엡 2:2",
+   "species": "공중의 권세",
+   "era": "시대를 가리지 않음",
+   "flavor": "불순종의 아들들 가운데서 역사하는 영.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "도시 위 낮게 깔린 검은 구름 속의 형상",
+   "appearance": "보라색 망토를 쓴 그림자 형체, 얼굴은 두 점의 노란 눈뿐, 작은 박쥐 날개로 떠 있음"
+  },
+  {
+   "id": "hl-wind-prince-2",
+   "name": "흑암의 주관자",
+   "kind": "인물",
+   "faction": "지옥",
+   "type": "바람",
+   "stage": "1진화",
+   "evolves_from": "공중 권세 잡은 자",
+   "hp": 120,
+   "attacks": [
+    {
+     "name": "어둠의 손",
+     "cost": {
+      "바람": 2
+     },
+     "damage": 60,
+     "text": "상대 손에서 무작위로 1장을 버리게 한다."
+    },
+    {
+     "name": "흑암",
+     "cost": {
+      "바람": 2,
+      "무색": 1
+     },
+     "damage": 90,
+     "text": ""
+    }
+   ],
+   "retreat": 2,
+   "verse": "엡 6:12",
+   "species": "이 어둠의 세상 주관자",
+   "era": "시대를 가리지 않음",
+   "flavor": "우리의 씨름은 혈과 육에 대한 것이 아니다.",
+   "rarity": "★",
+   "illustrator": "AI",
+   "art_prompt": "빛을 삼키는 검은 안개의 거대한 형상",
+   "appearance": "같은 그림자 형체가 더 짙은 검보라로 커지고, 머리에 왕관처럼 뿔이 돋음"
+  },
+  {
+   "id": "hv-item-manna",
+   "name": "만나",
+   "kind": "아이템",
+   "faction": "천국",
+   "text": "카드 2장을 뽑는다.",
+   "verse": "출 16:15",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "이슬 내린 새벽 들판에 깔린 흰 알갱이"
+  },
+  {
+   "id": "hv-item-trumpet",
+   "name": "기드온의 나팔",
+   "kind": "아이템",
+   "faction": "천국",
+   "text": "상대의 배틀 인물을 벤치 인물과 바꾸게 한다. 상대가 고른다.",
+   "verse": "삿 7:20",
+   "rarity": "◆",
+   "illustrator": "AI",
+   "art_prompt": "밤중에 횃불과 나팔을 든 손들이 둘러선 진영"
+  },
+  {
+   "id": "hv-sup-ruth",
+   "name": "룻",
+   "kind": "서포터",
+   "faction": "천국",
+   "text": "내 덱에서 기본 인물 1장을 골라 손으로 가져온 뒤 덱을 섞는다.",
+   "verse": "룻 1:16",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "추수 끝난 보리밭에서 이삭을 줍는 여인",
+   "appearance": "스물 남짓 여인, 검게 땋아 늘인 긴 머리, 자주색 머릿수건, 품에 안은 이삭 한 다발"
+  },
+  {
+   "id": "hv-sup-nehemiah",
+   "name": "느헤미야",
+   "kind": "서포터",
+   "faction": "천국",
+   "text": "내 트래시에서 트레이너 카드 2장을 골라 손으로 가져온다.",
+   "verse": "느 2:17",
+   "rarity": "◆",
+   "illustrator": "AI",
+   "art_prompt": "무너진 성벽 앞에서 설계도를 펴든 사람",
+   "appearance": "마흔쯤, 검은 단발과 네모나게 다듬은 수염, 소매 걷은 작업복, 한 손에 흙손 한 손에 두루마리"
+  },
+  {
+   "id": "hv-stad-sinai",
+   "name": "시내산",
+   "kind": "스타디움",
+   "faction": "천국",
+   "text": "양쪽 모두의 빛 인물은 최대 HP가 20 늘어난다.",
+   "verse": "출 19:18",
+   "rarity": "★",
+   "illustrator": "AI",
+   "art_prompt": "연기와 번개에 휩싸인 거대한 산, 산 아래 진영"
+  },
+  {
+   "id": "hl-item-calf",
+   "name": "금송아지",
+   "kind": "아이템",
+   "faction": "지옥",
+   "text": "내 트래시에서 기본 에너지 1장을 내 벤치 인물에게 붙인다.",
+   "verse": "출 32:4",
+   "rarity": "◆",
+   "illustrator": "AI",
+   "art_prompt": "불빛 아래 세워진 금빛 송아지 상"
+  },
+  {
+   "id": "hl-item-silver",
+   "name": "은 삼십",
+   "kind": "아이템",
+   "faction": "지옥",
+   "text": "상대의 손에서 무작위로 1장을 버리게 한다.",
+   "verse": "마 26:15",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "바닥에 데굴데굴 흩어진 은전 서른 닢"
+  },
+  {
+   "id": "hl-item-serpent",
+   "name": "옛 뱀",
+   "kind": "아이템",
+   "faction": "지옥",
+   "text": "상대의 배틀 인물을 독 상태로 만든다.",
+   "verse": "창 3:1",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "열매가 달린 가지를 감고 내려다보는 뱀"
+  },
+  {
+   "id": "hl-sup-jezebel",
+   "name": "이세벨",
+   "kind": "서포터",
+   "faction": "지옥",
+   "text": "상대는 손에서 1장을 골라 버린다. 그 후 나는 카드 3장을 뽑는다.",
+   "verse": "왕상 21:7",
+   "rarity": "◆",
+   "illustrator": "AI",
+   "art_prompt": "창가에서 눈화장을 한 채 내려다보는 왕비",
+   "appearance": "서른쯤 여인, 붉게 물결치는 긴 머리, 금귀고리와 팔찌를 주렁주렁, 보라색 드레스"
+  },
+  {
+   "id": "hl-sup-falseprophet",
+   "name": "거짓 선지자",
+   "kind": "서포터",
+   "faction": "지옥",
+   "text": "내 덱에서 아무 카드 1장을 골라 손으로 가져오고, 손에서 1장을 버린다.",
+   "verse": "마 7:15",
+   "rarity": "◆",
+   "illustrator": "AI",
+   "art_prompt": "양가죽을 걸쳤으나 그림자는 이리인 형상",
+   "appearance": "양가죽을 뒤집어쓴 늑대, 삐져나온 꼬리와 발톱, 입꼬리만 올린 가짜 미소"
+  },
+  {
+   "id": "hl-stad-babel",
+   "name": "바벨탑",
+   "kind": "스타디움",
+   "faction": "지옥",
+   "text": "양쪽 모두, 서포터를 쓰려면 손에서 카드 1장을 먼저 버려야 한다.",
+   "verse": "창 11:4",
+   "rarity": "★",
+   "illustrator": "AI",
+   "art_prompt": "구름을 뚫고 올라가다 멈춘 거대한 층계탑"
+  },
+  {
+   "id": "hv-light-abraham",
+   "name": "아브라함",
+   "kind": "인물",
+   "faction": "천국",
+   "type": "빛",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 70,
+   "attacks": [
+    {
+     "name": "부르심을 따라",
+     "cost": {
+      "빛": 1
+     },
+     "damage": 20,
+     "text": "내 덱에서 기본 인물 1장을 골라 손으로 가져온다."
+    }
+   ],
+   "retreat": 1,
+   "verse": "창 12:1",
+   "species": "떠난 사람",
+   "era": "태초",
+   "flavor": "갈 바를 알지 못하고 떠났다.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "밤하늘의 별을 올려다보는 노인, 천막",
+   "appearance": "일흔 넘은 노인, 곧게 빗어내린 은빛 긴 수염, 베이지색 두건과 겉옷, 옹이진 지팡이, 하늘을 올려다봄"
+  },
+  {
+   "id": "hv-light-abraham-2",
+   "name": "믿음의 아브라함",
+   "kind": "인물",
+   "faction": "천국",
+   "type": "빛",
+   "stage": "1진화",
+   "evolves_from": "아브라함",
+   "hp": 110,
+   "attacks": [
+    {
+     "name": "모리아 산",
+     "cost": {
+      "빛": 2
+     },
+     "damage": 60,
+     "text": "내 트래시에서 기본 에너지 1장을 이 인물에게 붙인다."
+    }
+   ],
+   "retreat": 1,
+   "verse": "창 22:12",
+   "species": "믿음의 조상",
+   "era": "태초",
+   "flavor": "아들을 아끼지 않았다.",
+   "rarity": "◆",
+   "illustrator": "AI",
+   "art_prompt": "산 위 제단 앞에 선 노인과 붙잡힌 숫양",
+   "appearance": "같은 은빛 수염 노인, 더 희고 깨끗한 옷, 두 손을 가슴에 모음"
+  },
+  {
+   "id": "hv-light-solomon",
+   "name": "솔로몬",
+   "kind": "인물",
+   "faction": "천국",
+   "type": "빛",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 70,
+   "attacks": [
+    {
+     "name": "분별",
+     "cost": {
+      "빛": 1
+     },
+     "damage": 20,
+     "text": "내 덱 위 3장을 보고 1장을 손으로, 나머지는 덱 아래로."
+    }
+   ],
+   "retreat": 1,
+   "verse": "왕상 3:9",
+   "species": "지혜를 구한 왕",
+   "era": "주전 950년경",
+   "flavor": "장수도 부도 구하지 않았다.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "두 여인 앞에서 칼을 들어보이는 젊은 왕",
+   "appearance": "스물 남짓 앳된 왕, 윤기 나는 검은 직모 단발, 수염 없음, 이마에 가는 금띠, 청록색 옷"
+  },
+  {
+   "id": "hv-light-solomon-2",
+   "name": "지혜의 솔로몬",
+   "kind": "인물",
+   "faction": "천국",
+   "type": "빛",
+   "stage": "1진화",
+   "evolves_from": "솔로몬",
+   "hp": 120,
+   "attacks": [
+    {
+     "name": "성전을 세우다",
+     "cost": {
+      "빛": 2
+     },
+     "damage": 70,
+     "text": "내 인물 전체에서 데미지 카운터 1개(10)씩 덜어낸다."
+    }
+   ],
+   "retreat": 2,
+   "verse": "왕상 6:14",
+   "species": "성전을 지은 왕",
+   "era": "주전 950년경",
+   "flavor": "칠 년 만에 성전을 마쳤다.",
+   "rarity": "◆",
+   "illustrator": "AI",
+   "art_prompt": "금과 백향목으로 지어진 성전 내부",
+   "appearance": "같은 검은 단발 청년에 짧은 수염이 남, 금실 자수가 빼곡한 왕복과 묵직한 금관"
+  },
+  {
+   "id": "hv-fire-moses",
+   "name": "모세",
+   "kind": "인물",
+   "faction": "천국",
+   "type": "불",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 80,
+   "attacks": [
+    {
+     "name": "떨기나무 불꽃",
+     "cost": {
+      "불": 1
+     },
+     "damage": 30,
+     "text": ""
+    }
+   ],
+   "retreat": 1,
+   "verse": "출 3:2",
+   "species": "부름받은 목자",
+   "era": "주전 1400년경",
+   "flavor": "불이 붙었으나 타지 않았다.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "불타지만 사라지지 않는 떨기나무 앞의 사람",
+   "appearance": "마흔쯤, 검은 곱슬머리와 수염에 흰 가닥이 섞임, 짙은 눈썹, 갈색 튜닉, 끝이 구부러진 목자 지팡이"
+  },
+  {
+   "id": "hv-fire-moses-2",
+   "name": "시내산의 모세",
+   "kind": "인물",
+   "faction": "천국",
+   "type": "불",
+   "stage": "1진화",
+   "evolves_from": "모세",
+   "hp": 130,
+   "attacks": [
+    {
+     "name": "율법의 돌판",
+     "cost": {
+      "불": 2
+     },
+     "damage": 70,
+     "text": "상대가 다음 턴에 아이템을 쓸 수 없다."
+    },
+    {
+     "name": "구름 기둥",
+     "cost": {
+      "불": 2,
+      "무색": 1
+     },
+     "damage": 100,
+     "text": ""
+    }
+   ],
+   "retreat": 2,
+   "verse": "출 19:20",
+   "species": "산에 오른 자",
+   "era": "주전 1400년경",
+   "flavor": "얼굴에서 광채가 났다.",
+   "rarity": "★",
+   "illustrator": "AI",
+   "art_prompt": "연기 덮인 산 정상에서 돌판을 든 사람",
+   "ability": {
+    "name": "중보",
+    "text": "[천국 시그니처] 내 턴에 1번, 내 트래시에서 천국 인물 1장을 손으로 가져온다."
+   },
+   "appearance": "같은 곱슬머리와 수염이 온통 하얗게 셈, 얼굴에서 은은한 빛, 두 팔로 돌판 두 개를 안음"
+  },
+  {
+   "id": "hv-fire-john",
+   "name": "세례 요한",
+   "kind": "인물",
+   "faction": "천국",
+   "type": "불",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 70,
+   "attacks": [
+    {
+     "name": "회개하라",
+     "cost": {
+      "불": 1
+     },
+     "damage": 20,
+     "text": "상대 배틀 인물에 붙은 에너지 1개를 버리게 한다."
+    }
+   ],
+   "retreat": 1,
+   "verse": "마 3:11",
+   "species": "광야의 소리",
+   "era": "주후 30년경",
+   "flavor": "낙타털 옷을 입고 메뚜기를 먹었다.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "요단강 물에 발을 담그고 선 털옷 차림의 작은 사람",
+   "appearance": "스물 후반, 덥수룩한 검은 곱슬 장발이 어깨를 덮음, 야윈 체격, 낙타털 옷과 가죽 띠"
+  },
+  {
+   "id": "hv-water-peter",
+   "name": "베드로",
+   "kind": "인물",
+   "faction": "천국",
+   "type": "물",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 70,
+   "attacks": [
+    {
+     "name": "그물을 내리다",
+     "cost": {
+      "물": 1
+     },
+     "damage": 20,
+     "text": "카드 1장을 뽑는다."
+    }
+   ],
+   "retreat": 1,
+   "verse": "마 4:19",
+   "species": "어부",
+   "era": "주후 30년경",
+   "flavor": "배와 그물을 버려두고 따랐다.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "새벽 호수에서 그물을 끌어올리는 어부",
+   "appearance": "마흔쯤, 짧고 굵은 갈색 곱슬머리에 둥글게 깎은 수염, 넓은 어깨, 소매를 걷은 작업옷, 어깨에 그물"
+  },
+  {
+   "id": "hv-water-peter-2",
+   "name": "물 위를 걷는 베드로",
+   "kind": "인물",
+   "faction": "천국",
+   "type": "물",
+   "stage": "1진화",
+   "evolves_from": "베드로",
+   "hp": 110,
+   "attacks": [
+    {
+     "name": "주여 구원하소서",
+     "cost": {
+      "물": 2
+     },
+     "damage": 60,
+     "text": "이 인물의 데미지 카운터를 3개(30) 덜어낸다."
+    }
+   ],
+   "retreat": 1,
+   "verse": "마 14:30",
+   "species": "믿음이 흔들린 자",
+   "era": "주후 30년경",
+   "flavor": "바람을 보고 무서워 빠져들기 시작했다.",
+   "rarity": "◆",
+   "illustrator": "AI",
+   "art_prompt": "파도 위에 선 사람과 내밀어진 손",
+   "appearance": "같은 갈색 곱슬 수염 사내, 눈이 휘둥그레진 놀란 얼굴, 한 손을 앞으로 뻗음"
+  },
+  {
+   "id": "hv-water-jonah",
+   "name": "요나",
+   "kind": "인물",
+   "faction": "천국",
+   "type": "물",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 60,
+   "attacks": [
+    {
+     "name": "도망",
+     "cost": {
+      "물": 1
+     },
+     "damage": 20,
+     "text": "이 인물을 벤치 인물과 바꾸어도 된다."
+    }
+   ],
+   "retreat": 1,
+   "verse": "욘 1:3",
+   "species": "달아난 선지자",
+   "era": "주전 8세기",
+   "flavor": "다시스로 가는 배삯을 주었다.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "폭풍 치는 바다 위 기울어진 돛단배",
+   "appearance": "서른쯤, 주황빛 곱슬머리에 뾰족한 코, 초록 겉옷, 등에 짐 보따리, 뒤를 힐끔 보는 표정"
+  },
+  {
+   "id": "hv-water-jonah-2",
+   "name": "큰 물고기 속 요나",
+   "kind": "인물",
+   "faction": "천국",
+   "type": "물",
+   "stage": "1진화",
+   "evolves_from": "요나",
+   "hp": 100,
+   "attacks": [
+    {
+     "name": "사흘 밤낮",
+     "cost": {
+      "물": 2
+     },
+     "damage": 60,
+     "text": "다음 상대 턴에 이 인물이 받는 데미지 -30."
+    }
+   ],
+   "retreat": 2,
+   "verse": "욘 1:17",
+   "species": "삼켜진 자",
+   "era": "주전 8세기",
+   "flavor": "물고기 뱃속에서 사흘을 있었다.",
+   "rarity": "◆",
+   "illustrator": "AI",
+   "art_prompt": "거대한 물고기 뱃속, 희미한 빛줄기",
+   "appearance": "같은 주황 곱슬머리가 물에 젖어 착 달라붙음, 무릎을 꿇고 두 손을 모음"
+  },
+  {
+   "id": "hv-earth-joshua",
+   "name": "여호수아",
+   "kind": "인물",
+   "faction": "천국",
+   "type": "땅",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 80,
+   "attacks": [
+    {
+     "name": "강하고 담대하라",
+     "cost": {
+      "땅": 1
+     },
+     "damage": 30,
+     "text": ""
+    }
+   ],
+   "retreat": 1,
+   "verse": "수 1:9",
+   "species": "뒤를 이은 자",
+   "era": "주전 1400년경",
+   "flavor": "두려워 말고 놀라지 말라는 말을 들었다.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "요단 앞에 선 갑옷 차림의 지휘관",
+   "appearance": "서른쯤 군인, 바짝 깎은 검은 머리, 각진 턱, 가죽 투구와 청동 비늘갑옷"
+  },
+  {
+   "id": "hv-earth-joshua-2",
+   "name": "여리고의 여호수아",
+   "kind": "인물",
+   "faction": "천국",
+   "type": "땅",
+   "stage": "1진화",
+   "evolves_from": "여호수아",
+   "hp": 130,
+   "attacks": [
+    {
+     "name": "일곱 번 돌다",
+     "cost": {
+      "땅": 2
+     },
+     "damage": 70,
+     "text": "상대 스타디움을 버린다."
+    },
+    {
+     "name": "성이 무너지다",
+     "cost": {
+      "땅": 2,
+      "무색": 1
+     },
+     "damage": 110,
+     "text": ""
+    }
+   ],
+   "retreat": 2,
+   "verse": "수 6:20",
+   "species": "성을 무너뜨린 자",
+   "era": "주전 1400년경",
+   "flavor": "나팔 소리에 성벽이 무너져 내렸다.",
+   "rarity": "◆",
+   "illustrator": "AI",
+   "art_prompt": "무너져 내리는 성벽과 나팔 부는 행렬",
+   "appearance": "같은 짧은 머리 군인, 칼을 머리 위로 높이 치켜듦"
+  },
+  {
+   "id": "hv-earth-caleb",
+   "name": "갈렙",
+   "kind": "인물",
+   "faction": "천국",
+   "type": "땅",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 70,
+   "attacks": [
+    {
+     "name": "이 산지를 내게",
+     "cost": {
+      "땅": 1
+     },
+     "damage": 30,
+     "text": "내 벤치 인물 1장에 기본 에너지를 1개 더 붙여도 된다."
+    }
+   ],
+   "retreat": 1,
+   "verse": "수 14:12",
+   "species": "여든다섯의 용사",
+   "era": "주전 1400년경",
+   "flavor": "사십 년이 지나도 그때처럼 강건했다.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "산지를 가리키는 백발의 노인",
+   "appearance": "여든다섯이지만 다부진 노인, 짧은 백발과 굵고 검은 눈썹, 주름진 구릿빛 얼굴, 긴 창"
+  },
+  {
+   "id": "hv-wind-elisha",
+   "name": "엘리사",
+   "kind": "인물",
+   "faction": "천국",
+   "type": "바람",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 70,
+   "attacks": [
+    {
+     "name": "겉옷을 받다",
+     "cost": {
+      "바람": 1
+     },
+     "damage": 20,
+     "text": "내 트래시에서 아이템 1장을 손으로 가져온다."
+    }
+   ],
+   "retreat": 1,
+   "verse": "왕하 2:13",
+   "species": "뒤따른 선지자",
+   "era": "주전 9세기",
+   "flavor": "스승의 겉옷을 주워 들었다.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "강가에 떨어진 겉옷을 집어드는 사람",
+   "appearance": "스물 남짓, 머리를 아주 짧게 민 반들한 정수리, 수염 없는 동그란 얼굴, 수수한 흰 옷"
+  },
+  {
+   "id": "hv-wind-elisha-2",
+   "name": "갑절의 영 엘리사",
+   "kind": "인물",
+   "faction": "천국",
+   "type": "바람",
+   "stage": "1진화",
+   "evolves_from": "엘리사",
+   "hp": 120,
+   "attacks": [
+    {
+     "name": "불말의 산",
+     "cost": {
+      "바람": 2
+     },
+     "damage": 70,
+     "text": "상대 벤치 인물 1장에게 데미지 20."
+    }
+   ],
+   "retreat": 1,
+   "verse": "왕하 6:17",
+   "species": "갑절을 받은 자",
+   "era": "주전 9세기",
+   "flavor": "우리와 함께한 자가 저들보다 많다.",
+   "rarity": "◆",
+   "illustrator": "AI",
+   "art_prompt": "산을 가득 메운 불말과 불병거의 환상",
+   "appearance": "같은 민머리 청년, 어깨에 스승의 낡은 낙타털 겉옷을 두름"
+  },
+  {
+   "id": "hv-wind-stephen",
+   "name": "스데반",
+   "kind": "인물",
+   "faction": "천국",
+   "type": "바람",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 60,
+   "attacks": [
+    {
+     "name": "하늘이 열리다",
+     "cost": {
+      "바람": 1
+     },
+     "damage": 20,
+     "text": "이 인물이 다음 턴에 기절하면 영혼 카드를 1장 가져온다."
+    }
+   ],
+   "retreat": 1,
+   "verse": "행 7:56",
+   "species": "첫 순교자",
+   "era": "주후 35년경",
+   "flavor": "하늘이 열리고 인자가 선 것을 보았다.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "하늘에서 쏟아지는 빛줄기를 올려다보며 웃는 젊은이",
+   "appearance": "스물 남짓, 부드러운 갈색 곱슬머리, 흰 겉옷, 두 손을 모으고 하늘을 올려다보는 평온한 얼굴"
+  },
+  {
+   "id": "hv-item-stones",
+   "name": "다섯 매끄러운 돌",
+   "kind": "아이템",
+   "faction": "천국",
+   "text": "이번 턴에 내 빛 인물의 기술 데미지 +20.",
+   "verse": "삼상 17:40",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "시냇가에 나란히 놓인 매끄러운 조약돌 다섯 개"
+  },
+  {
+   "id": "hv-item-water",
+   "name": "생명수",
+   "kind": "아이템",
+   "faction": "천국",
+   "text": "내 인물 1장에서 데미지 카운터 2개(20)를 덜어내고 특수상태를 회복한다.",
+   "verse": "요 4:14",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "바위틈에서 솟는 맑은 샘물"
+  },
+  {
+   "id": "hv-item-lamp",
+   "name": "등불",
+   "kind": "아이템",
+   "faction": "천국",
+   "text": "내 덱 위 4장을 보고 그중 1장을 손으로, 나머지는 덱 아래로 보낸다.",
+   "verse": "시 119:105",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "어두운 길을 비추는 작은 기름 등잔"
+  },
+  {
+   "id": "hv-item-mustard",
+   "name": "겨자씨",
+   "kind": "아이템",
+   "faction": "천국",
+   "text": "내 벤치 기본 인물 1장을 그 자리에서 진화시킨다. 이 턴에 놓은 인물에도 쓸 수 있다.",
+   "verse": "마 17:20",
+   "rarity": "◆",
+   "illustrator": "AI",
+   "art_prompt": "손바닥 위의 아주 작은 씨앗 한 알"
+  },
+  {
+   "id": "hv-sup-aaron",
+   "name": "아론",
+   "kind": "서포터",
+   "faction": "천국",
+   "text": "내 트래시에서 기본 에너지 3장을 손으로 가져온다.",
+   "verse": "출 28:1",
+   "rarity": "◆",
+   "illustrator": "AI",
+   "art_prompt": "흉패를 단 제사장 복장의 사람",
+   "appearance": "예순쯤, 희고 넓은 수염, 금방울 달린 대제사장 예복, 열두 보석 가슴판, 흰 터번"
+  },
+  {
+   "id": "hv-sup-deborah",
+   "name": "드보라",
+   "kind": "서포터",
+   "faction": "천국",
+   "text": "카드 2장을 뽑는다. 내 배틀 인물이 천국이면 1장 더 뽑는다.",
+   "verse": "삿 4:4",
+   "rarity": "◆",
+   "illustrator": "AI",
+   "art_prompt": "종려나무 아래 앉아 재판하는 여인",
+   "appearance": "마흔쯤 여인, 적갈색 머리를 높이 틀어올림, 노란 겉옷, 종려나무 아래 앉음"
+  },
+  {
+   "id": "hv-sup-esther",
+   "name": "에스더",
+   "kind": "서포터",
+   "faction": "천국",
+   "text": "카드 3장을 뽑는다. 내 필드의 인물이 전부 천국이면 2장 더 뽑는다.",
+   "verse": "에 4:16",
+   "rarity": "★",
+   "illustrator": "AI",
+   "art_prompt": "왕 앞 뜰에 홀로 선 왕비",
+   "appearance": "스물 남짓 왕비, 검고 긴 생머리, 섬세한 금관, 진홍색 왕비복"
+  },
+  {
+   "id": "hv-stad-jericho",
+   "name": "여리고 성",
+   "kind": "스타디움",
+   "faction": "천국",
+   "text": "양쪽 모두, 2진화 인물의 기술 데미지 +20.",
+   "verse": "수 6:1",
+   "rarity": "★",
+   "illustrator": "AI",
+   "art_prompt": "굳게 닫힌 거대한 성문과 성벽"
+  },
+  {
+   "id": "hl-earth-cain",
+   "name": "가인",
+   "kind": "인물",
+   "faction": "지옥",
+   "type": "땅",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 70,
+   "attacks": [
+    {
+     "name": "들에서",
+     "cost": {
+      "땅": 1
+     },
+     "damage": 30,
+     "text": ""
+    }
+   ],
+   "retreat": 1,
+   "verse": "창 4:8",
+   "species": "첫 살인자",
+   "era": "태초",
+   "flavor": "아우를 들로 불러냈다.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "텅 빈 들판에 혼자 서서 고개를 숙인 농부",
+   "appearance": "스물 남짓, 헝클어진 갈색 머리, 흙 묻은 농부 옷, 입을 삐죽 내민 심통 난 얼굴"
+  },
+  {
+   "id": "hl-earth-cain-2",
+   "name": "쫓겨난 가인",
+   "kind": "인물",
+   "faction": "지옥",
+   "type": "땅",
+   "stage": "1진화",
+   "evolves_from": "가인",
+   "hp": 110,
+   "attacks": [
+    {
+     "name": "유리하는 자",
+     "cost": {
+      "땅": 2
+     },
+     "damage": 60,
+     "text": "이 인물을 벤치 인물과 바꾸어도 된다."
+    },
+    {
+     "name": "땅의 저주",
+     "cost": {
+      "땅": 2,
+      "무색": 1
+     },
+     "damage": 90,
+     "text": ""
+    }
+   ],
+   "retreat": 2,
+   "verse": "창 4:12",
+   "species": "떠도는 자",
+   "era": "태초",
+   "flavor": "땅이 다시는 그에게 효력을 주지 않았다.",
+   "rarity": "◆",
+   "illustrator": "AI",
+   "art_prompt": "메마른 황야를 끝없이 걷는 표식 찍힌 사람",
+   "appearance": "같은 헝클어진 갈색 머리 청년, 이마에 작은 표식, 보따리를 메고 등을 돌림"
+  },
+  {
+   "id": "hl-earth-anak",
+   "name": "아낙 자손",
+   "kind": "인물",
+   "faction": "지옥",
+   "type": "땅",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 80,
+   "attacks": [
+    {
+     "name": "메뚜기 같더라",
+     "cost": {
+      "땅": 1
+     },
+     "damage": 20,
+     "text": "상대 배틀 인물은 다음 턴에 기술 데미지가 20 줄어든다."
+    }
+   ],
+   "retreat": 2,
+   "verse": "민 13:33",
+   "species": "거인 족속",
+   "era": "주전 1400년경",
+   "flavor": "그들 앞에서 우리는 메뚜기 같았다.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "정탐꾼들을 내려다보는 거대한 사람들",
+   "appearance": "덩치만 큰 아이 같은 거인, 검은 곱슬 더벅머리, 가죽 조끼, 어깨에 걸친 통나무 몽둥이"
+  },
+  {
+   "id": "hl-light-nebu",
+   "name": "느부갓네살",
+   "kind": "인물",
+   "faction": "지옥",
+   "type": "빛",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 80,
+   "attacks": [
+    {
+     "name": "금 신상",
+     "cost": {
+      "빛": 1
+     },
+     "damage": 30,
+     "text": ""
+    }
+   ],
+   "retreat": 2,
+   "verse": "단 3:1",
+   "species": "바벨론의 왕",
+   "era": "주전 6세기",
+   "flavor": "높이 육십 규빗의 금 신상을 세웠다.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "거대한 금 신상 앞에 엎드린 무리",
+   "appearance": "쉰쯤, 네모나게 말아 다듬은 검은 수염, 높은 금관, 짙은 파랑 왕복, 턱을 치켜든 자세"
+  },
+  {
+   "id": "hl-light-nebu-2",
+   "name": "교만한 느부갓네살",
+   "kind": "인물",
+   "faction": "지옥",
+   "type": "빛",
+   "stage": "1진화",
+   "evolves_from": "느부갓네살",
+   "hp": 120,
+   "attacks": [
+    {
+     "name": "큰 바벨론",
+     "cost": {
+      "빛": 2
+     },
+     "damage": 70,
+     "text": "상대 손에서 무작위로 1장을 버리게 한다."
+    }
+   ],
+   "retreat": 2,
+   "verse": "단 4:30",
+   "species": "낮아진 왕",
+   "era": "주전 6세기",
+   "flavor": "소처럼 풀을 먹고 이슬에 젖었다.",
+   "rarity": "◆",
+   "illustrator": "AI",
+   "art_prompt": "왕관을 쓴 채 들짐승처럼 변해가는 형상",
+   "appearance": "같은 검은 수염 왕인데 머리와 손톱이 제멋대로 길게 자람, 들풀밭에 네 발로 엎드려 풀을 뜯는 멋쩍은 표정"
+  },
+  {
+   "id": "hl-light-simon",
+   "name": "마술사 시몬",
+   "kind": "인물",
+   "faction": "지옥",
+   "type": "빛",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 60,
+   "attacks": [
+    {
+     "name": "돈으로 사다",
+     "cost": {
+      "빛": 1
+     },
+     "damage": 20,
+     "text": "내 덱에서 아이템 1장을 골라 손으로 가져온다."
+    }
+   ],
+   "retreat": 1,
+   "verse": "행 8:18",
+   "species": "술법을 행하던 자",
+   "era": "주후 35년경",
+   "flavor": "은사를 돈으로 사려 했다.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "은전을 내밀며 웃는 화려한 차림의 남자",
+   "appearance": "서른쯤, 보라색 두건, 가늘게 기른 콧수염, 손가락 사이로 동전을 굴림"
+  },
+  {
+   "id": "hl-fire-molech",
+   "name": "몰렉",
+   "kind": "인물",
+   "faction": "지옥",
+   "type": "불",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 80,
+   "attacks": [
+    {
+     "name": "불 가운데로",
+     "cost": {
+      "불": 1
+     },
+     "damage": 30,
+     "text": "내 벤치 인물 1장을 버려도 된다. 버렸으면 데미지 +30."
+    }
+   ],
+   "retreat": 2,
+   "verse": "레 18:21",
+   "species": "삼키는 우상",
+   "era": "주전 1000년경",
+   "flavor": "자녀를 불 가운데로 지나가게 했다.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "입에서 불을 뿜는 뚱뚱한 청동 우상, 두 팔을 벌리고 있다",
+   "appearance": "청동 황소 머리를 한 통통한 우상, 짧은 다리, 배 한가운데 작은 아궁이 불"
+  },
+  {
+   "id": "hl-fire-molech-2",
+   "name": "풀무불의 우상",
+   "kind": "인물",
+   "faction": "지옥",
+   "type": "불",
+   "stage": "1진화",
+   "evolves_from": "몰렉",
+   "hp": 120,
+   "attacks": [
+    {
+     "name": "일곱 배 뜨겁게",
+     "cost": {
+      "불": 2
+     },
+     "damage": 70,
+     "text": "이 인물도 데미지 카운터 2개(20)를 받는다."
+    }
+   ],
+   "retreat": 2,
+   "verse": "단 3:19",
+   "species": "달궈진 화덕",
+   "era": "주전 6세기",
+   "flavor": "평소보다 일곱 배나 뜨겁게 했다.",
+   "rarity": "◆",
+   "illustrator": "AI",
+   "art_prompt": "하얗게 달아오른 거대한 풀무 화덕",
+   "appearance": "같은 청동 황소 우상이 벌겋게 달아올라 주황빛으로 빛나고 어깨에서 아지랑이"
+  },
+  {
+   "id": "hl-fire-magician",
+   "name": "애굽의 마술사",
+   "kind": "인물",
+   "faction": "지옥",
+   "type": "불",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 60,
+   "attacks": [
+    {
+     "name": "그대로 흉내내다",
+     "cost": {
+      "불": 1
+     },
+     "damage": 20,
+     "text": "상대 배틀 인물의 기술 1개를 이 턴에 쓴 것으로 친다. 데미지는 20으로 한다."
+    }
+   ],
+   "retreat": 1,
+   "verse": "출 7:11",
+   "species": "술객",
+   "era": "주전 1400년경",
+   "flavor": "그들도 술법으로 같은 일을 행했다.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "지팡이를 뱀으로 바꾸는 궁정 술사들",
+   "appearance": "이집트 흰 주름치마와 검은 단발 가발, 눈가에 검은 선 화장, 뱀으로 변하는 지팡이"
+  },
+  {
+   "id": "hl-water-beast",
+   "name": "바다에서 나온 짐승",
+   "kind": "인물",
+   "faction": "지옥",
+   "type": "물",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 80,
+   "attacks": [
+    {
+     "name": "깊음에서 오르다",
+     "cost": {
+      "물": 1
+     },
+     "damage": 30,
+     "text": ""
+    }
+   ],
+   "retreat": 2,
+   "verse": "계 13:1",
+   "species": "바다의 짐승",
+   "era": "마지막 때",
+   "flavor": "열 뿔과 일곱 머리를 가졌다.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "검은 파도 위로 솟아오르는 뿔 달린 형체",
+   "appearance": "물갈퀴 달린 통통한 바다 괴수, 비늘이 청록색, 멍한 눈"
+  },
+  {
+   "id": "hl-water-beast-2",
+   "name": "열 뿔의 짐승",
+   "kind": "인물",
+   "faction": "지옥",
+   "type": "물",
+   "stage": "1진화",
+   "evolves_from": "바다에서 나온 짐승",
+   "hp": 140,
+   "attacks": [
+    {
+     "name": "권세를 받다",
+     "cost": {
+      "물": 2
+     },
+     "damage": 80,
+     "text": "상대 벤치 인물 1장에게 데미지 20."
+    },
+    {
+     "name": "삼키는 바다",
+     "cost": {
+      "물": 2,
+      "무색": 2
+     },
+     "damage": 120,
+     "text": ""
+    }
+   ],
+   "retreat": 3,
+   "verse": "계 13:7",
+   "species": "권세 받은 짐승",
+   "era": "마지막 때",
+   "flavor": "모든 족속을 이길 권세를 받았다.",
+   "rarity": "★",
+   "illustrator": "AI",
+   "art_prompt": "열 개의 뿔이 솟은 거대한 바다 짐승",
+   "ability": {
+    "name": "미혹하는 표",
+    "text": "[지옥 시그니처] 내 벤치 인물 1장을 버려도 된다. 버렸으면 카드 3장을 뽑는다."
+   },
+   "appearance": "같은 청록 바다 괴수 머리에 작은 뿔 열 개가 왕관처럼 돋음, 눈빛이 또렷해짐"
+  },
+  {
+   "id": "hl-water-plague",
+   "name": "애굽의 재앙",
+   "kind": "인물",
+   "faction": "지옥",
+   "type": "물",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 60,
+   "attacks": [
+    {
+     "name": "피로 변하다",
+     "cost": {
+      "물": 1
+     },
+     "damage": 20,
+     "text": "상대는 다음 턴에 카드를 1장만 뽑는다."
+    }
+   ],
+   "retreat": 1,
+   "verse": "출 7:20",
+   "species": "강을 덮은 재앙",
+   "era": "주전 1400년경",
+   "flavor": "강물이 피로 변하여 고기가 죽었다.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "강물이 붉게 변하자 깜짝 놀라 튀어오른 물고기들",
+   "appearance": "강물을 뒤덮은 초록 개구리 떼, 저마다 다른 방향을 보는 동그란 눈"
+  },
+  {
+   "id": "hl-wind-abaddon",
+   "name": "아바돈",
+   "kind": "인물",
+   "faction": "지옥",
+   "type": "바람",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 70,
+   "attacks": [
+    {
+     "name": "연기 기둥",
+     "cost": {
+      "바람": 1
+     },
+     "damage": 20,
+     "text": "상대 배틀 인물을 독 상태로 만든다."
+    }
+   ],
+   "retreat": 1,
+   "verse": "계 9:11",
+   "species": "무저갱의 사자",
+   "era": "마지막 때",
+   "flavor": "히브리 말로 아바돈이라 한다.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "갈라진 구덩이에서 뭉게뭉게 피어오르는 검은 연기",
+   "appearance": "사람만 한 메뚜기, 갈색 껍질, 투명한 날개, 긴 더듬이"
+  },
+  {
+   "id": "hl-wind-abaddon-2",
+   "name": "무저갱의 아바돈",
+   "kind": "인물",
+   "faction": "지옥",
+   "type": "바람",
+   "stage": "1진화",
+   "evolves_from": "아바돈",
+   "hp": 130,
+   "attacks": [
+    {
+     "name": "다섯 달의 고통",
+     "cost": {
+      "바람": 2
+     },
+     "damage": 70,
+     "text": "상대 배틀 인물을 독 상태로 만든다. 이 독은 턴마다 20씩 준다."
+    }
+   ],
+   "retreat": 2,
+   "verse": "계 9:5",
+   "species": "파멸의 왕",
+   "era": "마지막 때",
+   "flavor": "죽기를 구하여도 죽지 못하게 했다.",
+   "rarity": "★",
+   "illustrator": "AI",
+   "art_prompt": "왕관을 쓴 통통한 메뚜기 대장과 졸병 메뚜기들",
+   "appearance": "같은 갈색 메뚜기가 작은 철관을 쓰고 가슴에 갑옷을 댐"
+  },
+  {
+   "id": "hl-wind-legion",
+   "name": "군대 귀신",
+   "kind": "인물",
+   "faction": "지옥",
+   "type": "바람",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 60,
+   "attacks": [
+    {
+     "name": "우리가 많으니",
+     "cost": {
+      "바람": 1
+     },
+     "damage": 20,
+     "text": "내 덱에서 이 카드와 같은 이름의 카드 1장을 골라 벤치에 놓는다."
+    }
+   ],
+   "retreat": 1,
+   "verse": "막 5:9",
+   "species": "이름이 군대인 것",
+   "era": "주후 30년경",
+   "flavor": "우리의 이름은 군대니 우리가 많음이라.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "바위 사이에 옹기종기 겹쳐 앉은 수많은 작은 그림자들",
+   "appearance": "손바닥만 한 똑같은 보라색 도깨비 여럿이 우르르 뭉침, 모두 같은 얼굴"
+  },
+  {
+   "id": "hl-wind-endor",
+   "name": "엔돌의 신접한 여인",
+   "kind": "인물",
+   "faction": "지옥",
+   "type": "바람",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 60,
+   "attacks": [
+    {
+     "name": "불러올리다",
+     "cost": {
+      "바람": 1
+     },
+     "damage": 20,
+     "text": "내 트래시에서 인물 1장을 골라 손으로 가져온다."
+    }
+   ],
+   "retreat": 1,
+   "verse": "삼상 28:7",
+   "species": "신접한 자",
+   "era": "주전 1000년경",
+   "flavor": "밤중에 변장하고 찾아온 왕을 맞았다.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "촛불 하나 켜진 토굴, 떠오르는 희미한 형체",
+   "appearance": "허리 굽은 노파, 산발한 흰 머리, 검은 숄, 탁자 위 흐린 수정구"
+  },
+  {
+   "id": "hl-earth-beast2",
+   "name": "땅에서 나온 짐승",
+   "kind": "인물",
+   "faction": "지옥",
+   "type": "땅",
+   "stage": "기본",
+   "evolves_from": null,
+   "hp": 70,
+   "attacks": [
+    {
+     "name": "거짓 표적",
+     "cost": {
+      "땅": 1
+     },
+     "damage": 20,
+     "text": "상대 스타디움을 버린다."
+    }
+   ],
+   "retreat": 1,
+   "verse": "계 13:11",
+   "species": "두 뿔의 짐승",
+   "era": "마지막 때",
+   "flavor": "어린 양 같은 두 뿔이 있고 용처럼 말했다.",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "양의 뿔을 가졌으나 눈이 붉은 짐승",
+   "appearance": "양처럼 생긴 통통한 짐승, 머리에 뿔 두 개, 입만 늑대처럼 뾰족함"
+  },
+  {
+   "id": "hl-item-altar",
+   "name": "우상의 단",
+   "kind": "아이템",
+   "faction": "지옥",
+   "text": "내 트래시에서 기본 에너지 1장을 내 배틀 인물에게 붙인다.",
+   "verse": "왕하 17:16",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "언덕 위에 돌로 쌓아올린 제단과 기둥"
+  },
+  {
+   "id": "hl-item-wine",
+   "name": "독주",
+   "kind": "아이템",
+   "faction": "지옥",
+   "text": "상대는 다음 턴에 후퇴 비용이 무색 2개만큼 늘어난다.",
+   "verse": "잠 20:1",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "엎질러진 잔과 검붉은 포도주"
+  },
+  {
+   "id": "hl-item-bait",
+   "name": "꾀는 미끼",
+   "kind": "아이템",
+   "faction": "지옥",
+   "text": "상대의 벤치 인물 1장을 배틀 자리로 끌어낸다. 내가 고른다.",
+   "verse": "약 1:14",
+   "rarity": "●",
+   "illustrator": "AI",
+   "art_prompt": "함정 위에 놓인 잘 익은 과일"
+  },
+  {
+   "id": "hl-item-cistern",
+   "name": "터진 웅덩이",
+   "kind": "아이템",
+   "faction": "지옥",
+   "text": "상대의 손에서 무작위로 2장을 보고 그중 1장을 버리게 한다.",
+   "verse": "렘 2:13",
+   "rarity": "◆",
+   "illustrator": "AI",
+   "art_prompt": "바닥이 갈라져 물이 새는 돌 웅덩이"
+  },
+  {
+   "id": "hl-sup-balaam",
+   "name": "발람",
+   "kind": "서포터",
+   "faction": "지옥",
+   "text": "내 덱에서 아무 카드 2장을 골라 손으로 가져오고, 손에서 2장을 버린다.",
+   "verse": "민 22:7",
+   "rarity": "◆",
+   "illustrator": "AI",
+   "art_prompt": "나귀를 탄 채 길을 막힌 점술가",
+   "appearance": "쉰쯤, 회색 수염, 갈색 여행 겉옷, 말을 하려는 듯 입을 벌린 나귀 옆에 섬"
+  },
+  {
+   "id": "hl-sup-herod",
+   "name": "헤롯",
+   "kind": "서포터",
+   "faction": "지옥",
+   "text": "상대의 벤치 인물 1장에게 데미지 카운터 4개(40)를 올린다.",
+   "verse": "마 2:16",
+   "rarity": "◆",
+   "illustrator": "AI",
+   "art_prompt": "화난 얼굴로 손가락질하는 작은 왕, 왕관이 기울어져 있다",
+   "appearance": "마흔쯤, 기름 바른 검은 곱슬머리, 월계관 모양 금관, 붉은 토가, 턱을 치켜든 거만한 표정"
+  },
+  {
+   "id": "hl-sup-judas",
+   "name": "가룟 유다",
+   "kind": "서포터",
+   "faction": "지옥",
+   "text": "상대는 손에서 2장을 골라 버린다. 내 필드의 인물이 전부 지옥이면 카드 2장을 뽑는다.",
+   "verse": "마 26:15",
+   "rarity": "★",
+   "illustrator": "AI",
+   "art_prompt": "등 뒤로 은전 주머니를 숨긴 채 어색하게 웃는 사람",
+   "appearance": "서른쯤, 검은 곱슬 단발, 짙은 초록 겉옷, 손에 쥔 은주머니, 눈을 옆으로 피함"
+  },
+  {
+   "id": "hl-stad-sodom",
+   "name": "소돔",
+   "kind": "스타디움",
+   "faction": "지옥",
+   "text": "양쪽 모두, 자기 턴이 끝날 때 배틀 인물에게 데미지 카운터 1개(10)를 올린다.",
+   "verse": "창 19:24",
+   "rarity": "◆",
+   "illustrator": "AI",
+   "art_prompt": "작은 불꽃 방울이 뚝뚝 떨어지는 장난감 같은 성읍"
+  },
+  {
+   "id": "hl-stad-abyss",
+   "name": "무저갱",
+   "kind": "스타디움",
+   "faction": "지옥",
+   "text": "양쪽 모두, 기절한 인물은 트래시 대신 덱 아래로 간다.",
+   "verse": "계 9:1",
+   "rarity": "★",
+   "illustrator": "AI",
+   "art_prompt": "끝이 보이지 않는 깊은 구덩이와 열쇠"
+  }
+ ],
+ "set": {
+  "name": "창세",
+  "code": "GEN"
+ },
+ "art_tone": {
+  "천국": "따뜻하고 포근한 분위기",
+  "지옥": "무섭지 않게, 짓궂은 장난꾸러기 악당 느낌"
+ },
+ "art_style_object": "부드러운 파스텔 수채, 굵고 둥근 윤곽선, 인물 없이, 단순한 배경",
+ "art_reference": "style-reference.png"
+}

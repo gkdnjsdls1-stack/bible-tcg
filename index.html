@@ -1,0 +1,116 @@
+<meta charset="utf-8">
+<title>성경 TCG — 창세</title>
+<style>
+:root{
+  --felt:#1d2b22; --felt2:#16211b; --ink:#f3ece0; --dim:#9aa79e;
+  --gold:#c9a227; --ivory:#f6efdd; --heaven:#6fa8dc; --hell:#c0504d;
+  --card: 63/88;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--felt);color:var(--ink);
+  font:14px/1.5 -apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}
+button{font:inherit;color:var(--ink);background:#2c3b31;border:1px solid #44564a;
+  border-radius:6px;padding:6px 12px;cursor:pointer}
+button:hover{background:#3a4c3f}
+button:disabled{opacity:.4;cursor:not-allowed}
+button.on{background:var(--gold);color:#1b1b1b;border-color:var(--gold)}
+nav{display:flex;gap:4px;align-items:center;padding:8px 12px;
+  background:var(--felt2);border-bottom:1px solid #000;position:sticky;top:0;z-index:5}
+nav h1{font-size:15px;margin:0 12px 0 0;color:var(--gold);letter-spacing:.05em}
+nav .sp{flex:1}
+#coins{font-variant-numeric:tabular-nums;color:var(--gold)}
+main{padding:12px}
+section[hidden]{display:none!important}
+h2{font-size:14px;margin:0 0 8px;color:var(--dim);font-weight:600}
+
+/* 카드 — 구운 PNG가 전부라서 테두리·글자를 그리지 않는다 */
+.card{aspect-ratio:var(--card);border-radius:5%;display:block;width:100%;
+  background:#0d130f;object-fit:cover}
+.slot{position:relative;cursor:pointer}
+.slot .card{box-shadow:0 2px 6px #0008}
+.slot.sel .card{outline:3px solid var(--gold);outline-offset:1px}
+.slot .n{position:absolute;right:3px;bottom:3px;background:#000b;color:var(--ivory);
+  border-radius:4px;padding:0 5px;font-size:12px;font-variant-numeric:tabular-nums}
+.slot.no .card{filter:grayscale(1) brightness(.35)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px}
+.bar{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.back{aspect-ratio:var(--card);border-radius:5%;width:100%;
+  background:repeating-linear-gradient(45deg,#2a1f12,#2a1f12 6px,#35281a 6px,#35281a 12px);
+  border:1px solid var(--gold);display:grid;place-items:center;color:var(--gold);font-size:20px}
+
+/* 팩 */
+#pack .grid{grid-template-columns:repeat(5,1fr);max-width:900px}
+.dupe{outline:2px solid var(--gold)}
+.tag{font-size:11px;color:var(--dim);text-align:center}
+
+/* 덱 */
+.two{display:grid;grid-template-columns:1fr 300px;gap:14px;align-items:start}
+#decklist{background:var(--felt2);border:1px solid #33443a;border-radius:8px;padding:10px;
+  position:sticky;top:60px;max-height:80vh;overflow:auto}
+#decklist li{display:flex;gap:6px;align-items:center;list-style:none;padding:2px 0}
+#decklist ul{margin:0;padding:0}
+#decklist .nm{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.warn{color:#e8a33d}
+.ok{color:#7fc98a}
+
+/* 대전 플레이매트 — 포켓몬 공식 배치 */
+.mat{display:grid;gap:6px;margin-bottom:8px;
+  grid-template-columns:90px 90px 1fr 90px;align-items:start}
+.zone{min-height:40px}
+.zlab{font-size:11px;color:var(--dim);margin-bottom:2px}
+.row{display:flex;gap:5px;flex-wrap:wrap}
+.row .slot{width:72px;flex:0 0 auto}
+.prize{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.prize .back{font-size:12px}
+.hand{background:#0f1712;border:1px solid #2c3b31;border-radius:8px;padding:6px;margin-bottom:8px}
+.hand .row .slot{width:86px}
+.dmg{position:absolute;left:2px;top:2px;background:#c0504d;color:#fff;border-radius:50%;
+  width:24px;height:24px;display:grid;place-items:center;font-size:12px;font-weight:700}
+.stage{display:flex;gap:4px;position:absolute;left:0;right:0;bottom:-20px;justify-content:center}
+.stage button{padding:0 6px;font-size:12px;line-height:18px}
+#flip{min-width:84px}
+.mid{text-align:center;padding:6px;border-top:1px dashed #44564a;border-bottom:1px dashed #44564a;
+  margin:10px 0;display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap}
+</style>
+
+<nav>
+  <h1>성경 TCG · 창세</h1>
+  <button data-tab="pack" class="on">팩</button>
+  <button data-tab="coll">컬렉션</button>
+  <button data-tab="deck">덱</button>
+  <button data-tab="battle">대전</button>
+  <span class="sp"></span>
+  <span id="coins"></span>
+  <button id="reset" title="컬렉션·덱 전부 삭제">초기화</button>
+</nav>
+
+<main>
+<section id="pack">
+  <div class="bar">
+    <button id="buy">팩 열기</button>
+    <span id="packinfo" class="tag"></span>
+  </div>
+  <div class="grid" id="packout"></div>
+</section>
+
+<section id="coll" hidden>
+  <div class="bar" id="collfilter"></div>
+  <div class="grid" id="collgrid"></div>
+</section>
+
+<section id="deck" hidden>
+  <div class="two">
+    <div>
+      <div class="bar" id="deckfilter"></div>
+      <div class="grid" id="deckpool"></div>
+    </div>
+    <div id="decklist"></div>
+  </div>
+</section>
+
+<section id="battle" hidden>
+  <div class="bar" id="battlesetup"></div>
+  <div id="board"></div>
+</section>
+</main>
+<script src="app.js"></script>
