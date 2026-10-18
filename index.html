@@ -1,4 +1,5 @@
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>성경 TCG — 창세</title>
 <style>
 :root{
@@ -14,7 +15,7 @@ button{font:inherit;color:var(--ink);background:#2c3b31;border:1px solid #44564a
 button:hover{background:#3a4c3f}
 button:disabled{opacity:.4;cursor:not-allowed}
 button.on{background:var(--gold);color:#1b1b1b;border-color:var(--gold)}
-nav{display:flex;gap:4px;align-items:center;padding:8px 12px;
+nav{display:flex;flex-wrap:wrap;gap:4px;align-items:center;padding:8px 12px;
   background:var(--felt2);border-bottom:1px solid #000;position:sticky;top:0;z-index:5}
 nav h1{font-size:15px;margin:0 12px 0 0;color:var(--gold);letter-spacing:.05em}
 nav .sp{flex:1}
@@ -71,6 +72,19 @@ h2{font-size:14px;margin:0 0 8px;color:var(--dim);font-weight:600}
 #flip{min-width:84px}
 .mid{text-align:center;padding:6px;border-top:1px dashed #44564a;border-bottom:1px dashed #44564a;
   margin:10px 0;display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap}
+
+/* 휴대폰 */
+@media (max-width:700px){
+  main{padding:8px}
+  nav h1{font-size:14px;margin-right:6px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}
+  #pack .grid{grid-template-columns:repeat(3,1fr)}
+  .two{grid-template-columns:1fr}
+  #decklist{position:static;max-height:none}
+  .mat{grid-template-columns:62px 62px 1fr}
+  .mat>div:nth-child(3){grid-column:1/-1;order:1}   /* 배틀+벤치를 아래 한 줄 통째로 */
+  .stage button{min-width:30px;line-height:26px}
+}
 </style>
 
 <nav>
