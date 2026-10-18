@@ -57,6 +57,7 @@ h2{font-size:14px;margin:0 0 8px;color:var(--dim);font-weight:600}
 /* 대전 플레이매트 — 포켓몬 공식 배치 */
 .mat{display:grid;gap:6px;margin-bottom:8px;
   grid-template-columns:90px 90px 1fr 90px;align-items:start}
+.mat.opp>div:nth-child(3){display:flex;flex-direction:column-reverse}  /* 상대는 벤치가 바깥 */
 .zone{min-height:40px}
 .zlab{font-size:11px;color:var(--dim);margin-bottom:2px}
 .row{display:flex;gap:5px;flex-wrap:wrap}
@@ -70,6 +71,8 @@ h2{font-size:14px;margin:0 0 8px;color:var(--dim);font-weight:600}
 .stage{display:flex;gap:4px;position:absolute;left:0;right:0;bottom:-20px;justify-content:center}
 .stage button{padding:0 6px;font-size:12px;line-height:18px}
 #flip{min-width:84px}
+.log{flex:1 0 100%;text-align:left;font-size:12px;line-height:1.7;color:var(--ivory);
+  background:#0f1712;border:1px solid #2c3b31;border-radius:6px;padding:6px 8px}
 .mid{text-align:center;padding:6px;border-top:1px dashed #44564a;border-bottom:1px dashed #44564a;
   margin:10px 0;display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap}
 
@@ -127,4 +130,5 @@ h2{font-size:14px;margin:0 0 8px;color:var(--dim);font-weight:600}
   <div id="board"></div>
 </section>
 </main>
+<script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <script src="app.js"></script>
