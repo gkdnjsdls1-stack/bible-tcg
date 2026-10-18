@@ -78,6 +78,8 @@
 - `rulebook.py` → `rules.md` — 룰북. 수치는 한 줄도 손으로 안 적고 cards.json에서 읽는다
 - `index.html` + `app.js` — 웹 앱 (팩 개봉 / 컬렉션 / 덱 / 대전 플레이매트)
 - `print.html` — 실물 인쇄 시트 (A4 9장씩, 브라우저 "PDF로 저장")
+- `webart.py` → `art-web/<id>.jpg` — art/ 원본(장당 2.7MB)을 1040px/q70으로 줄인 배포본.
+  **앱과 인쇄 시트는 art-web/만 본다.** art/는 보관용 마스터라 git에 올리지 않는다
 - `.claude/launch.json` — `python3 -m http.server 8001`. 열 때는 반드시 localhost로
   (file://로 열면 cards.json fetch가 CORS에 막힌다)
 
@@ -114,6 +116,15 @@
 - **팩의 덤 에너지는 표시만 한다.** 기본 에너지는 디지털에서 무제한이라 컬렉션에 넣을 게 없다.
 - **덱 자동 채우기는 에너지를 맨 마지막에 넣는다.** 에너지 상한이 무제한이라 먼저 돌리면
   한 종류가 덱 60장을 다 먹는다 (실제로 56장짜리 덱이 나왔다).
+
+- **배포는 GitHub Pages** (2026-10-18). https://gkdnjsdls1-stack.github.io/bible-tcg/
+  저장소 `gkdnjsdls1-stack/bible-tcg` (공개). `git push origin main` 하면 자동으로 다시 올라간다.
+  `.nojekyll`을 둬서 Jekyll을 건너뛴다.
+- **원본 그림은 배포하지 않는다.** art/ 258MB는 Pages에도 Artifact(64MB 한도)에도 안 들어간다.
+  webart.py로 만든 art-web/ 26MB만 올린다 — 1040px은 63x88mm를 300dpi로 찍는 크기라
+  웹과 인쇄가 이 한 벌을 같이 쓴다. **카드를 다시 구우면 webart.py를 다시 돌릴 것.**
+  (이 macOS의 sips는 webp를 모른다 — 그래서 jpeg다.)
+- **git push가 HTTP 400으로 끊기면** `git config http.postBuffer 524288000`. 첫 푸시 26MB에서 났다.
 
 ## 아직 안 정한 것
 - 플레이테스트 (수치는 포켓몬 비율로 맞췄을 뿐, 한 판도 안 돌려봤다)
